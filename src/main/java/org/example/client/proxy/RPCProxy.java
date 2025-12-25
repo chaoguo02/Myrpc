@@ -10,11 +10,8 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
-@AllArgsConstructor
 public class RPCProxy implements InvocationHandler {
     private final MyClient client;
-    private String host;
-    private int port;
 
     public RPCProxy(MyClient client) {
         this.client = client;

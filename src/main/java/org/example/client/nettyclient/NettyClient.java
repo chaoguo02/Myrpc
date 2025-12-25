@@ -13,8 +13,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.client.proxy.ClientProxy;
 import org.example.client.proxy.RPCProxy;
+import org.example.client.service.BlogService;
 import org.example.client.service.UserService;
 import org.example.client.socket.MyClient;
+import org.example.pojo.Blog;
 import org.example.pojo.RPCRequest;
 import org.example.pojo.RPCResponse;
 import org.example.pojo.User;
@@ -43,9 +45,13 @@ public class NettyClient implements MyClient {
 
     public static void main(String[] args) {
         NettyClient nettyClient = new NettyClient("127.0.0.1", 8899);
-        RPCProxy rpcProxy = new RPCProxy(nettyClient,nettyClient.getHost(),nettyClient.getPort());
+        RPCProxy rpcProxy = new RPCProxy(nettyClient);
         UserService userService = rpcProxy.getProxy(UserService.class);
         User user = userService.getUserByUserId(10);
+        System.out.println("user:" + user);
+        BlogService blogService = rpcProxy.getProxy(BlogService.class);
+        Blog blog = blogService.getBlogById(1000);
+        System.out.println("blog:" + blog);
     }
     @Override
     public RPCResponse sendResponse(RPCRequest request) {
