@@ -1,7 +1,5 @@
 package org.example.client.proxy;
 
-import lombok.AllArgsConstructor;
-import org.example.client.socket.IOClient;
 import org.example.client.socket.MyClient;
 import org.example.pojo.RPCRequest;
 import org.example.pojo.RPCResponse;
@@ -11,7 +9,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 public class RPCProxy implements InvocationHandler {
-    private final MyClient client;
+    private MyClient client;
 
     public RPCProxy(MyClient client) {
         this.client = client;

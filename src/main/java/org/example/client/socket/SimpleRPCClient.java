@@ -25,26 +25,26 @@ public class SimpleRPCClient implements MyClient{
     // 需要一层动态代理，根据反射封装不同的Service
 
 
-    @Override
-    public RPCResponse sendResponse(RPCRequest request) {
-        try {
-            Socket socket = new Socket(host,port);
-            ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-            ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
-            System.out.println("request:" + request);
-            // request写入oos流中
-            oos.writeObject(request);
-            oos.flush();
-            // ois流读数据response
-            RPCResponse response = (RPCResponse) ois.readObject();
-            System.out.println("response.getData:" + response.getData());
-            return response;
-
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println();
-            return null;
-        }
-    }
+//    @Override
+//    public RPCResponse sendResponse(RPCRequest request) {
+//        try {
+//            Socket socket = new Socket(host,port);
+//            ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+//            ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+//            System.out.println("request:" + request);
+//            // request写入oos流中
+//            oos.writeObject(request);
+//            oos.flush();
+//            // ois流读数据response
+//            RPCResponse response = (RPCResponse) ois.readObject();
+//            System.out.println("response.getData:" + response.getData());
+//            return response;
+//
+//        } catch (IOException | ClassNotFoundException e) {
+//            System.out.println();
+//            return null;
+//        }
+//    }
 
     @Override
     public RPCResponse sendRequest(RPCRequest request) {

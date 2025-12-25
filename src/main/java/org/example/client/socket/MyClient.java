@@ -7,7 +7,7 @@ import org.example.pojo.RPCResponse;
 
 public interface MyClient {
 
-    RPCResponse sendResponse(RPCRequest request);
+//    RPCResponse sendResponse(RPCRequest request);
 
     RPCResponse sendRequest(RPCRequest request);
 }

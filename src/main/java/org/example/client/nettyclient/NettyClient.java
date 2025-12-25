@@ -7,11 +7,9 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.util.AttributeKey;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example.client.proxy.ClientProxy;
 import org.example.client.proxy.RPCProxy;
 import org.example.client.service.BlogService;
 import org.example.client.service.UserService;
@@ -53,25 +51,25 @@ public class NettyClient implements MyClient {
         Blog blog = blogService.getBlogById(1000);
         System.out.println("blog:" + blog);
     }
-    @Override
-    public RPCResponse sendResponse(RPCRequest request) {
-        try {
-            ChannelFuture channelFuture = bootstrap.connect(host, port).sync();
-            Channel channel = channelFuture.channel();
-            // 发送数据
-            channel.writeAndFlush(request);
-            channel.closeFuture().sync();
-
-            AttributeKey<RPCResponse> key = AttributeKey.valueOf("RPCResponse");
-            RPCResponse response = channel.attr(key).get();
-            System.out.println(response);
-            return response;
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    @Override
+//    public RPCResponse sendResponse(RPCRequest request) {
+//        try {
+//            ChannelFuture channelFuture = bootstrap.connect(host, port).sync();
+//            Channel channel = channelFuture.channel();
+//            // 发送数据
+//            channel.writeAndFlush(request);
+//            channel.closeFuture().sync();
+//
+//            AttributeKey<RPCResponse> key = AttributeKey.valueOf("RPCResponse");
+//            RPCResponse response = channel.attr(key).get();
+//            System.out.println(response);
+//            return response;
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
     @Override
     public RPCResponse sendRequest(RPCRequest request) {
